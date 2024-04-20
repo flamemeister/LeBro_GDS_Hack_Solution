@@ -8,8 +8,7 @@
 }
 
 .wrapper {
-  /* height: 100vh; */
-  width: 80%;
+  border-radius: 10%;
 }
 
 .wrapper .title {
@@ -23,6 +22,7 @@
 
 .wrapper .box {
   border: 1px solid #efefef;
+  background-color: var(--secondary-color);
   padding: 10px 15px;
   min-height: 400px;
   overflow: auto;
@@ -36,7 +36,7 @@
 }
 
 .wrapper .box .item .icon {
-  background: #007bff;
+  background: transparent;
   color: white;
   width: 40px;
   height: 40px;
@@ -154,3 +154,10 @@
   background-color: #0056b3; /* Slightly darker shade on hover */
 }
 
+
+.user-icon {
+  width: 40px; /* Adjust size as needed */
+  height: 40px; /* Adjust size as needed */
+  border-radius: 50%; /* Create a circular shape */
+  overflow: hidden; /* Hide overflow content (if any) */
+}

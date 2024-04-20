@@ -2,6 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { api, setAuthToken, baseURL } from '../../services/api';
 import './Chat.css';
+import { ButtonList } from '../UI';
+
+import Map from '../Map/Map';
+
+import { user_ava, bot_ava } from '../../assets/icons';
 
 export default function Chat() {
   const [message, setMessage] = useState('');
@@ -9,6 +14,7 @@ export default function Chat() {
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const boxRef = useRef(null); // Create a ref for the box element
+  const [isMapModalOpen, setIsMapModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -27,6 +33,7 @@ export default function Chat() {
         console.error('Error fetching user info:', error);
         if (error.response && error.response.status === 401) {
           localStorage.removeItem('accessToken');
+          localStorage.removeItem('chatMessages');
           window.location.replace('/login');
         }
       }
@@ -162,61 +169,89 @@ export default function Chat() {
   };
 
 
+  const handleActionButtonClick = () => {
+   handleFindAttractions();
+  };
+
+  const handleGoToMapButtonClick = async () => {
+    setIsMapModalOpen((prevState) => !prevState);
+
+    if (boxRef.current) {
+      boxRef.current.scrollTop = boxRef.current.scrollHeight;
+    }
+  };
+
+
+
   return (
-    <div className="chat">
-      <div className="wrapper">
-        <div className="title">Citypass Astana Чат-боты</div>
-        <div className="box" ref={boxRef}>
-          <div className="item">
-            <div className="icon">
-              <i className="fa fa-user"></i>
-            </div>
-            <div className="msg">
-              <p>Сәлем {userData?.first_name} {userData?.surname}! Мен сіздің барлық сұрақтарыңызға мүмкіндігінше жауап беруге дайынмын</p>
-            </div>
-          </div>
-          <br clear="both" />
-          {messages.map((msg, index) => (
-            <div key={index}>
-              <div className={`item ${msg.sender === 'user' ? 'right' : ''}`}>
-                <div className="icon">
-                  <i className={`fa fa-${msg.sender === 'user' ? 'user' : 'robot'}`}></i>
-                </div>
-                <div className="msg">
-                  <p>{msg.text}</p>
-                </div>
-              </div>
-              <br clear="both" />
-            </div>
-          ))}
-          {isLoading && (
+    <>
+      <div className="chat">
+        <div className="wrapper">
+          <div className="title">Citypass Astana Чат-боты</div>
+          <div className="box" ref={boxRef}>
             <div className="item">
               <div className="icon">
-                <i className="fa fa-spinner fa-spin"></i>
+                <img
+                  src={bot_ava}
+                  alt={'Bot Icon'}
+                  className="user-icon"
+                />
               </div>
               <div className="msg">
-                <p>Маған бір секунд беріңіз. Мен еске түсіруге тырысамын</p>
+                <p>Сәлем {userData?.first_name} {userData?.surname}! Мен сіздің барлық сұрақтарыңызға мүмкіндігінше жауап беруге дайынмын</p>
               </div>
             </div>
-          )}
-        </div>
-
-        <div className="typing-area">
-          <div className="input-field">
-            <input
-              type="text"
-              placeholder="Type your message"
-              value={message}
-              onChange={handleMessageChange}
-              required
-            />
-            <button onClick={handleSendMessage} className="send-btn">Send</button>
+            <br clear="both" />
+            {messages.map((msg, index) => (
+              <div key={index}>
+                <div className={`item ${msg.sender === 'user' ? 'right' : ''}`}>
+                  <div className="icon">
+                    <img
+                      src={msg.sender === 'user' ? user_ava[userData?.profile_image] : bot_ava}
+                      alt={msg.sender === 'user' ? 'User Icon' : 'Bot Icon'}
+                      className="user-icon"
+                    />
+                  </div>
+                  <div className="msg">
+                    <p>{msg.text}</p>
+                  </div>
+                </div>
+                <br clear="both" />
+              </div>
+            ))}
+            {isLoading && (
+              <div className="item">
+                <div className="icon">
+                  <img
+                    src={bot_ava}
+                    alt={'Bot Icon'}
+                    className="user-icon"
+                  />
+                </div>
+                <div className="msg">
+                  <p>Маған бір секунд беріңіз. Мен еске түсіруге тырысамын</p>
+                </div>
+              </div>
+            )}
           </div>
-          <button onClick={handleFindAttractions} className="find-attractions-btn">
-            Тиісті көрікті жерлерді табыңыз
-          </button>
+
+          <div className="typing-area">
+            <div className="input-field">
+              <input
+                type="text"
+                placeholder="Сұрағыңызды теріңіз"
+                value={message}
+                onChange={handleMessageChange}
+                required
+              />
+              <button onClick={handleSendMessage} className="send-btn">Жіберу</button>
+            </div>
+            {/* Here we use the ActionButtonBar */}
+            <ButtonList onFindAttractionsClick={handleActionButtonClick} onGoToMapClick={handleGoToMapButtonClick}  isOpen={isMapModalOpen}/>
+          </div>
         </div>
       </div>
-    </div>
+      {isMapModalOpen && <Map />}
+    </>
   );
 };

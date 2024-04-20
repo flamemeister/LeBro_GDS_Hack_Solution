@@ -1,0 +1,10 @@
+.map-container {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px; /* Rounded corners */
+  border: 10px solid var(--primary-color); /* Border with primary color */
+}

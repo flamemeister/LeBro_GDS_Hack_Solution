@@ -12,7 +12,7 @@ body, html {
   margin: 0;
   padding: 0;
   font-family: var(--font-family);
-  background-color: var(--secondary-color);
+  background-color: gray;
 }
 
 .container {
