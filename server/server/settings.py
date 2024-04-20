@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     #apps
     'users.apps.UsersConfig',
     'attractions.apps.AttractionsConfig',
+    'question_answering.apps.QuestionAnsweringConfig',
 ]
 
 MIDDLEWARE = [
