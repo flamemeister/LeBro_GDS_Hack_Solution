@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'attractions.apps.AttractionsConfig',
     'question_answering.apps.QuestionAnsweringConfig',
-    'map.apps.MapConfig',
 
     # Other apps
     'corsheaders',
