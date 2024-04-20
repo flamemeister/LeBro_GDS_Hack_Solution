@@ -43,11 +43,11 @@ export default function Registration() {
   return (
     <div className="container">
       <div className="card registration-form">
-        <h2>Регистрация</h2>
+        <h2>Тіркелу</h2>
         <form onSubmit={handleSubmit}>
           <div className="input-row">
             <div>
-              <label htmlFor="firstName">Имя</label>
+              <label htmlFor="firstName">Атыныз</label>
               <input 
                 type="text" 
                 id="firstName" 
@@ -57,7 +57,7 @@ export default function Registration() {
               />
             </div>
             <div>
-              <label htmlFor="surname">Фамилия</label>
+              <label htmlFor="surname">Тегініз</label>
               <input 
                 type="text" 
                 id="surname" 
@@ -69,7 +69,7 @@ export default function Registration() {
           </div>
           <div className="input-row">
             <div>
-              <label htmlFor="username">Имя пользователя</label>
+              <label htmlFor="username">Пайдаланушы атыныз</label>
               <input 
                 type="text" 
                 id="username" 
@@ -79,7 +79,7 @@ export default function Registration() {
               />
             </div>
             <div>
-              <label htmlFor="email">Электронная почта</label>
+              <label htmlFor="email">Электрондық пошта</label>
               <input 
                 type="email" 
                 id="email" 
@@ -91,7 +91,7 @@ export default function Registration() {
           </div>
           <div className="input-row">
             <div>
-              <label htmlFor="password">Пароль</label>
+              <label htmlFor="password">Құпия сөз</label>
               <input 
                 type="password" 
                 id="password" 
@@ -101,7 +101,7 @@ export default function Registration() {
               />
             </div>
             <div>
-              <label htmlFor="confirmPassword">Подтвердите пароль</label>
+              <label htmlFor="confirmPassword">Құпия сөзді растаңыз</label>
               <input 
                 type="password" 
                 id="confirmPassword" 
@@ -112,19 +112,19 @@ export default function Registration() {
             </div>
           </div>
           <div className="input-full-row">
-            <label htmlFor="keywords">Ключевые слова</label>
+            <label htmlFor="keywords">Сіздің тілектеріңізді сипаттайтын кілт сөздер</label>
             <input 
               type="text" 
               id="keywords" 
               value={keywords} 
               onChange={(e) => setKeywords(e.target.value)} 
-              placeholder='Введите ключевые слова через запятую'
+              placeholder='Кілт сөздерді үтір арқылы енгізіңіз'
             />
           </div>
           {registrationError && <p className="error-message">{registrationError}</p>}
-          <button type="submit">Зарегистрироваться</button>
+          <button type="submit">Тіркелу</button>
           <p className="login-link">
-            Уже есть аккаунт? <Link to="/login">Войти</Link>
+          Тіркелдіңіз бе? <Link to="/login">Кіру</Link>
           </p>
         </form>
       </div>

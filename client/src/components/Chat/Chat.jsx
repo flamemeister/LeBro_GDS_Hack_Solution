@@ -3,9 +3,7 @@ import axios from 'axios';
 import { api, setAuthToken, baseURL } from '../../services/api';
 import './Chat.css';
 import { ButtonList } from '../UI';
-
 import Map from '../Map/Map';
-
 import { user_ava, bot_ava } from '../../assets/icons';
 
 export default function Chat() {
@@ -13,7 +11,7 @@ export default function Chat() {
   const [userData, setUserData] = useState(null);
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const boxRef = useRef(null); // Create a ref for the box element
+  const boxRef = useRef(null);
   const [isMapModalOpen, setIsMapModalOpen] = useState(false);
 
   useEffect(() => {
@@ -46,11 +44,10 @@ export default function Chat() {
     const storedMessages = JSON.parse(localStorage.getItem('chatMessages')) || [];
     setMessages(storedMessages);
 
-    // Scroll down the box when messages are updated
     if (boxRef.current) {
       boxRef.current.scrollTop = boxRef.current.scrollHeight;
     }
-  }, [userData]); // Listen for changes in userData
+  }, [userData]);
 
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
@@ -58,7 +55,7 @@ export default function Chat() {
 
   const handleSendMessage = async () => {
     const newMessage = { text: message, sender: 'user' };
-    const updatedMessagesWithBot = [...messages, newMessage]; // Combine messages
+    const updatedMessagesWithBot = [...messages, newMessage];
     setMessages(updatedMessagesWithBot);
     localStorage.setItem('chatMessages', JSON.stringify(updatedMessagesWithBot));
 
@@ -97,7 +94,6 @@ export default function Chat() {
     setMessage('');
     setIsLoading(false);
 
-    // Scroll down the box after sending a message
     if (boxRef.current) {
       boxRef.current.scrollTop = boxRef.current.scrollHeight;
     }
@@ -111,33 +107,41 @@ export default function Chat() {
     const updatedMessages = [...messages, newMessage];
     setMessages(updatedMessages);
     localStorage.setItem('chatMessages', JSON.stringify(updatedMessages));
-  
+
     setIsLoading(true);
-  
+
     try {
       const token = localStorage.getItem('accessToken');
       if (!token) {
         throw new Error('Token not found');
       }
-  
+
       setAuthToken(token);
-  
+
       const response = await axios.get(`${baseURL}best_attractions_rating/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-  
+
       const attractions = response.data.filter(
         (attraction) => attraction.similarity_score > 0
       );
-  
+
+      const botResponse = 'Керемет! Мен сіздің қалауыңыз бойынша орындардың тізімін жасай алдым';
+      const updatedMessagesWithBotResponse = [
+        ...updatedMessages,
+        { text: botResponse, sender: 'bot' },
+      ];
+
+      setMessages(updatedMessagesWithBotResponse);
+
       if (attractions.length === 0) {
         const noResultsMessage = {
           text: 'Кешіріңіз! Мен сізге дұрыс орынды таба алмадым',
           sender: 'bot',
         };
-        const updatedMessagesWithNoResults = [...updatedMessages, noResultsMessage];
+        const updatedMessagesWithNoResults = [...updatedMessagesWithBotResponse, noResultsMessage];
         setMessages(updatedMessagesWithNoResults);
         localStorage.setItem('chatMessages', JSON.stringify(updatedMessagesWithNoResults));
       } else {
@@ -145,32 +149,28 @@ export default function Chat() {
           (attraction, index) =>
             `${index + 1}. ${attraction.attraction_name}`
         );
-  
-        const updatedMessagesWithBotResponse = [
-          ...updatedMessages,
+
+        const updatedMessagesWithBotMessages = [
+          ...updatedMessagesWithBotResponse,
           ...botMessages.map((text) => ({ text, sender: 'bot' })),
         ];
-  
-        setMessages(updatedMessagesWithBotResponse);
-        localStorage.setItem(
-          'chatMessages',
-          JSON.stringify(updatedMessagesWithBotResponse)
-        );
+
+        setMessages(updatedMessagesWithBotMessages);
+        localStorage.setItem('chatMessages', JSON.stringify(updatedMessagesWithBotMessages));
       }
     } catch (error) {
       console.error('Error finding attractions:', error);
     }
-  
+
     setIsLoading(false);
-  
+
     if (boxRef.current) {
       boxRef.current.scrollTop = boxRef.current.scrollHeight;
     }
   };
 
-
   const handleActionButtonClick = () => {
-   handleFindAttractions();
+    handleFindAttractions();
   };
 
   const handleGoToMapButtonClick = async () => {
@@ -180,8 +180,6 @@ export default function Chat() {
       boxRef.current.scrollTop = boxRef.current.scrollHeight;
     }
   };
-
-
 
   return (
     <>
@@ -246,8 +244,7 @@ export default function Chat() {
               />
               <button onClick={handleSendMessage} className="send-btn">Жіберу</button>
             </div>
-            {/* Here we use the ActionButtonBar */}
-            <ButtonList onFindAttractionsClick={handleActionButtonClick} onGoToMapClick={handleGoToMapButtonClick}  isOpen={isMapModalOpen}/>
+            <ButtonList onFindAttractionsClick={handleActionButtonClick} onGoToMapClick={handleGoToMapButtonClick} isOpen={isMapModalOpen} />
           </div>
         </div>
       </div>

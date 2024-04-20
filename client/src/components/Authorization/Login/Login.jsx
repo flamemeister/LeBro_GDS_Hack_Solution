@@ -32,10 +32,10 @@ export default function Login() {
   return (
     <div className="container">
       <div className="card login-form">
-        <h2>Вход</h2>
+        <h2>Кіру</h2>
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="email">Электронная почта</label>
+            <label htmlFor="email">Электрондық пошта</label>
             <input 
               type="email" 
               id="email" 
@@ -45,7 +45,7 @@ export default function Login() {
             />
           </div>
           <div>
-            <label htmlFor="password">Пароль</label>
+            <label htmlFor="password">Құпия сөз</label>
             <input 
               type="password" 
               id="password" 
@@ -54,9 +54,9 @@ export default function Login() {
               required 
             />
           </div>
-          <button type="submit">Войти</button>
+          <button type="submit">Кіру</button>
           <p className="register-link">
-            Нет аккаунта? <Link to="/registration">Зарегистрируйтесь здесь</Link>
+            Сіз Тіркелмегенсіз Бе? <Link to="/registration">Мұнда тіркеліңіз</Link>
           </p>
         </form>
       </div>
