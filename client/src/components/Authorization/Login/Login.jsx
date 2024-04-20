@@ -21,7 +21,7 @@ export default function Login() {
       localStorage.setItem('accessToken', accessToken);
 
       // Redirect to /chat page using window.location.replace
-      window.location.replace('/chat');
+      window.location.replace('/');
 
       console.log('Login successful. Access token:', accessToken);
     } catch (error) {

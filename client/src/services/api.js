@@ -18,4 +18,4 @@ const setAuthToken = (token) => {
   }
 };
 
-export { api, setAuthToken };
+export { api, setAuthToken, baseURL };
