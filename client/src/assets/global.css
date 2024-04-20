@@ -1,0 +1,58 @@
+/* assets/global.css */
+:root {
+  --primary-color: #2196f3; /* Your primary color */
+  --secondary-color: #ffffff; /* Your secondary color */
+  --text-color: #333333; /* Your default text color */
+  --error-color: #e53935; /* Color for error messages */
+  --success-color: #4caf50; /* Color for success messages */
+  --font-family: 'Arial', sans-serif; /* Adjust as needed */
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  background-color: var(--secondary-color);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px; /* Adjust as needed */
+  background: var(--secondary-color);
+}
+
+.card-container {
+  padding: 2rem;
+}
+
+.button-primary {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-primary:hover {
+  background-color: darken(var(--primary-color), 10%);
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Import this CSS file in App.jsx */

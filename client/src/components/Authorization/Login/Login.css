@@ -1,0 +1,97 @@
+.login-form {
+  width: 100%;
+  max-width: 320px;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  background: #23a2f6;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form::after {
+  content: '';
+  position: absolute;
+  background: linear-gradient(
+    140deg,
+    var(--background-gradient-start, #1845ad),
+    var(--background-gradient-end, #23a2f6)
+  );
+  width: 220%;
+  height: 220%;
+  top: -130%;
+  left: -110%;
+  transform: rotate(45deg);
+  z-index: -1000;
+}
+
+.login-form h2 {
+  align-self: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.login-form input {
+  background: rgba(255, 255, 255, 0.5);;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  border-radius: 5px;
+  color: inherit;
+  width: calc(100% - 1.5rem); 
+}
+
+.login-form input::placeholder {
+  color: #e5e5e5;
+}
+
+.login-form label {
+  align-self: flex-start;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.login-form button {
+  background: var(--button-background-color, #ffffff);
+  color: var(--button-text-color, #080710);
+  padding: 0.75rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  width: 100%; 
+  margin-top: 1rem; 
+}
+
+.login-form button:hover {
+  background-color: #e0e0e0;
+}
+
+.container, .card, form, .login-form {
+  z-index: 2;
+}
+
+
+.register-link {
+  color: #fff; /* Or any color that fits the login form's design */
+  text-align: center;
+  margin-top: 1rem; /* Space it out from the login button */
+}
+
+.register-link a {
+  color: #9cf; /* A color that stands out against the form, adjust as needed */
+  text-decoration: none; /* Optional style */
+}
+
+.register-link a:hover {
+  text-decoration: underline; /* Optional hover effect */
+}

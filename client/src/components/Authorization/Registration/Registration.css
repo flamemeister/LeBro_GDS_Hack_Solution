@@ -1,0 +1,123 @@
+.registration-form {
+  width: 400px;
+  max-width: 100%;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  background: #23a2f6; /* Adjust opacity as needed */
+  border: 2px solid rgba(255, 255, 255, 0.5); /* Make the border more visible */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.registration-form::before {
+  content: '';
+  position: absolute;
+  background: linear-gradient(
+    140deg,
+    var(--background-gradient-start, #1845ad),
+    var(--background-gradient-end, #23a2f6)
+  );
+  width: 220%;
+  height: 220%;
+  top: -141%;
+  left: -110%;
+  transform: rotate(45deg);
+  z-index: -1; /* Ensure the colored shape is behind the form content */
+}
+
+.registration-form h2 {
+  align-self: center;
+  font-size: 2rem;
+  margin-bottom: 2rem; /* Space between title and form fields */
+}
+
+.registration-form input {
+  background: rgba(255, 255, 255, 0.5); /* Inputs should adopt the glassmorphism effect */
+  border: 1px solid rgba(255, 255, 255, 0.5); /* Borders for input fields */
+  margin-bottom: 1rem; /* Space between each input field */
+  padding: 0.75rem; /* Padding for text inside inputs */
+  border-radius: 5px; /* Rounded corners for inputs */
+  color: inherit; /* Text color inherited from parent */
+  width: calc(100% - 1.5rem); /* Full width minus padding */
+  font-size: 1rem; /* Text size for input content */
+}
+
+.registration-form input::placeholder {
+  color: #e5e5e5; /* Light color for placeholders, ensuring visibility */
+}
+
+.registration-form label {
+  align-self: flex-start;
+  margin-bottom: 0.5rem; /* Space between label and input field */
+  font-size: 1rem; /* Text size for labels */
+}
+
+.registration-form button {
+  background: var(--button-background-color, #ffffff); /* Button color */
+  color: var(--button-text-color, #080710); /* Button text color */
+  padding: 0.75rem; /* Padding inside button */
+  border-radius: 5px; /* Rounded corners for button */
+  border: none; /* No border for button */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-weight: bold; /* Bold text for button */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+  width: 100%; /* Button should occupy the full width of the form */
+  margin-top: 1rem; /* Space between the last input and the button */
+}
+
+.registration-form button:hover {
+  background-color: #e0e0e0; /* Slightly darker background on hover */
+}
+
+/* Same z-index layering as the login form */
+.container, .card, form, .registration-form {
+  z-index: 2;
+}
+
+
+.login-link {
+  color: #fff; /* Choose a color that fits your design */
+  text-align: center;
+  margin-top: 1rem; /* Provide some spacing from the button */
+}
+
+.login-link a {
+  color: #9cf; /* Make the link stand out, adjust as necessary */
+  text-decoration: none; /* Optional: remove the underline */
+}
+
+.login-link a:hover {
+  text-decoration: underline; /* Optional: add underline on hover */
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem; /* Adjust the space between the two inputs */
+}
+
+.input-row > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-full-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem; /* Space between this input and the next element */
+}
+
+/* Add styles for screen size adjustments if necessary */
+@media (max-width: 600px) {
+  .input-row {
+    grid-template-columns: 1fr; /* Stack inputs vertically on smaller screens */
+  }
+}
