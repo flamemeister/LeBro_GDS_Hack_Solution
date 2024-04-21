@@ -53,7 +53,10 @@ Access all necessary files for fine-tuning the model via this Google Drive link:
 ## Additional Resources
 
 For more information and related projects, check out this GitHub repository:
-[QazQA by SultokTheF](https://github.com/SultokTheF/QazQA?tab=readme-ov-file)
+[QazQA](https://github.com/SultokTheF/QazQA?tab=readme-ov-file)
+
+Here is the documentation of our research work of developing Kazakh NLP:
+[KazakhNLP](https://docs.google.com/document/d/1WVMBzgi5YvkHJOTwRKGxrzdPYUoMNoDPc1c5GYX8GHw/edit?usp=sharing)
 
 
 
